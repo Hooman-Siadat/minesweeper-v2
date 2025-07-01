@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en" data-theme-index="0">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- Stylesheets -->
+		<link rel="stylesheet" href="./src/style/main.css" />
+		<title>Mine Sweeper</title>
+	</head>
+	<body>
+		<!-- TODO use template for main menu, board, game over menu, win -->
+
+		<!-- BACKGROUND -->
+		<div id="background" class="background-component"></div>
+
+		<button id="theme" class="fixed top-0 right-0 z-99">theme</button>
+
+		<template id="main-menu-template">
+			<!-- MENU -->
+			<form id="menu" class="menu-component">
+				<fieldset class="fieldset">
+					<label class="input">
+						<span class="label">Nickname</span>
+						<input
+							id="nickname"
+							type="text"
+							placeholder="Nickname ..."
+							minlength="2"
+							maxlength="10"
+							required
+						/>
+					</label>
+					<label class="select">
+						<span class="label">Game Mode</span>
+						<select id="game-mode" title="game difficulty" required>
+							<option value="EASY" selected>Easy</option>
+							<option value="MEDIUM">Medium</option>
+							<option value="HARD">Hard</option>
+							<option value="VERY_HARD">Very Hard</option>
+							<option value="INSANE">Insane</option>
+						</select>
+					</label>
+					<button type="submit" id="start-button" class="btn btn-neutral mt-4">
+						Start
+					</button>
+				</fieldset>
+			</form>
+		</template>
+
+		<template id="board-template">
+			<div class="flex h-full w-full flex-col">
+				<!-- TOP BAR -->
+				<div class="stats topbar-component">
+					<div class="stat text-center">
+						<div class="stat-title">Nickname</div>
+						<div id="nickname-display" class="stat-value"></div>
+					</div>
+
+					<div class="stat text-center">
+						<div class="stat-title">Timer</div>
+						<div id="timer-display" class="stat-value">00:00</div>
+					</div>
+				</div>
+
+				<!-- BOARD -->
+				<div id="board" class="board-component"></div>
+			</div>
+		</template>
+
+		<template id="game-over-template">
+			<div
+				class="wrap card flex flex-col gap-2 bg-slate-600/50 p-5 backdrop-blur-sm"
+			>
+				<div class="stats bg-slate-500/50 shadow">
+					<div class="stat place-items-center">
+						<div class="stat-title">Nickname</div>
+						<div class="stat-value">Hooman</div>
+						<!-- <div class="stat-desc">From January 1st to February 1st</div> -->
+					</div>
+					<div class="stat place-items-center">
+						<div class="stat-title">Current Time</div>
+						<div class="stat-value text-secondary">03:33</div>
+						<!-- <div class="stat-desc text-secondary">↗︎ 40 (2%)</div> -->
+					</div>
+					<div class="stat place-items-center">
+						<div class="stat-title">Best Time</div>
+						<div class="stat-value">02:33</div>
+						<!-- <div class="stat-desc">↘︎ 90 (14%)</div> -->
+					</div>
+				</div>
+				<div class="buttons flex gap-2">
+					<button class="btn grow">New Game</button>
+					<button class="btn grow">Restart</button>
+				</div>
+			</div>
+		</template>
+
+		<div id="app" class="flex h-full w-full items-center justify-center"></div>
+
+		<script type="module" src="./src/js/controller.js"></script>
+
+		<!-- THEME -->
+		<script>
+			const themes = [
+				"light",
+				"dark",
+				"cupcake",
+				"bumblebee",
+				"emerald",
+				"corporate",
+				"synthwave",
+				"retro",
+				"cyberpunk",
+				"valentine",
+				"halloween",
+				"garden",
+				"forest",
+				"aqua",
+				"lofi",
+				"pastel",
+				"fantasy",
+				"wireframe",
+				"black",
+				"luxury",
+				"dracula",
+				"cmyk",
+				"autumn",
+				"business",
+				"acid",
+				"lemonade",
+				"night",
+				"coffe",
+				"winter",
+				"dim",
+				"nord",
+				"sunset",
+				"caramellatte",
+				"abyss",
+				"silk",
+			];
+			const btn = document.querySelector("#theme");
+			btn.addEventListener("click", () => {
+				let themeIndex = document.documentElement.dataset.themeIndex;
+				if (themeIndex > themes.length) themeIndex = -1;
+				document.documentElement.dataset.theme = themes[themeIndex++];
+				btn.textContent = themes[themeIndex++];
+				document.documentElement.dataset.themeIndex = themeIndex++;
+			});
+		</script>
+	</body>
+</html>

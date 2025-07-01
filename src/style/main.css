@@ -1,0 +1,44 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+	themes: all;
+}
+
+@layer base {
+	:root {
+		--c1: #00ffffff;
+		--c2: #00d4ffff;
+		--img-grass-tile: url("../assets/grass-tile-texture.jpg");
+	}
+	body {
+		@apply flex h-dvh flex-col items-center justify-center overflow-hidden p-2 select-none;
+	}
+}
+
+@layer components {
+	.background-component {
+		@apply fixed -z-99 h-[500%] w-[500%] animate-[spin_20s_linear_infinite] bg-[conic-gradient(from_0deg_at_50%_50%,_var(--c1)_0%,_var(--c2)_5%,_var(--c2)_10%,_var(--c1)_15%,_var(--c1)_20%,_var(--c2)_25%,_var(--c2)_30%,_var(--c1)_35%,_var(--c1)_40%,_var(--c2)_45%,_var(--c2)_50%,_var(--c1)_55%,_var(--c1)_60%,_var(--c2)_65%,_var(--c2)_70%,_var(--c1)_75%,_var(--c1)_80%,_var(--c2)_85%,_var(--c2)_90%,_var(--c1)_95%,_var(--c1)_100%)] bg-[length:100%_100%] bg-[position:0px_0px];
+	}
+	.background-component.win {
+		--c1: #ffc600ff;
+		--c2: #d3ff00ff;
+	}
+	.background-component.lose {
+		--c1: rgb(255, 0, 255);
+		--c2: rgb(225, 142, 228);
+	}
+	.menu-component {
+		@apply bg-base-300/80 border-base-100 w-2xs rounded-xl border-1 p-4 backdrop-blur-md;
+	}
+	.topbar-component {
+		@apply bg-base-100 border-base-300 mb-1 grow overflow-hidden border;
+	}
+	.display-component {
+		@apply bg-base-100/30 border-base-100 rounded-md border-1 px-2 py-1 text-xl;
+	}
+	.board-component {
+		@apply card bg-base-300/30 border-base-100 grid h-full grow items-center justify-center gap-0.5 border-1 p-2 backdrop-blur-2xl;
+	}
+	.cell-component {
+		@apply card bg-base-100 h-[40px] w-[40px] shadow-md;
+	}
+}
